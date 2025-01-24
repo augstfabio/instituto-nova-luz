@@ -1,0 +1,105 @@
+.navbar {
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #1d1d1d;
+}
+.navbar a:hover{
+    color: #f7b000;
+}
+.logo h1 {
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: .7;
+    cursor: pointer;
+}
+
+.logo span {
+    color: #f7b000;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.profile svg {
+    font-size: 50px;
+   
+    color: #f7b000;
+}
+
+.dropDown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    list-style: none;
+    width: 200px;
+    z-index: 100;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    font-size: 13px;
+
+}
+
+.dropDown li {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.dropDown li:hover{
+    color: #f7b000;
+}
+.dropDown svg {
+    font-size: 16px;
+    margin-left: 8px;
+}
+
+.profile span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.profileInfo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: .5em;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+}
+.profileInfo svg{
+    font-size: 40px;
+}
+.profileInfo p {
+    font-size: 13px;
+    font-weight: 600;
+}
+.profileData span{
+    font-size: 10px;
+    font-weight: 400;
+}
+.exitBtn, .exitBtn svg{
+    color: #d81515;
+    font-weight: 500;
+}

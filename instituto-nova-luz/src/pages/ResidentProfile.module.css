@@ -1,0 +1,202 @@
+.residentProfile {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+.residentProfile h3{
+    font-size: 20px;
+    font-weight: bold;
+    color:#141414;
+    margin-bottom: 20px;
+}
+.responsible h3{
+    font-size: 20px;
+    font-weight: bold;
+    color: #141414;;
+    margin-bottom: 20px;
+}
+.profileContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+    width: 100%;
+    padding:0 40px;
+    
+}
+
+.personalInfo {
+    display: flex;
+    gap: 20px;
+}
+.profileInfo{
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ebeaea;
+}
+.profileInfo p{
+    color:#141414;
+    margin: 5px 0;
+    
+}
+.profileContent span {
+    font-weight: 600;
+}
+
+.profilePhoto img {
+    height: 250px;
+    width: 250px;
+    border-radius: 10px;
+}
+
+.responsible {
+    font-size: 14px;
+    margin-top: 2em;
+    padding: 10px;
+}
+.actions{
+    margin-top: 2em;
+    padding:0 40px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 400px;
+    gap: 20px;
+    justify-content: start;
+}
+
+.yelowBtn {
+    display: flex;
+    align-items: center;
+    justify-content: start; 
+    background-color:#e4a403 ;
+    color: #ebeaea  ;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+    gap: 5px; 
+}
+
+.yelowBtn:hover{
+    background-color: #c58e04;
+}
+.redBtn{
+    background-color: #e40303;
+    color: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: start; 
+    padding:10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+    gap: 5px; 
+}
+.redBtn:hover{
+    background-color: #be0202;
+}
+.download div{
+    display: none;
+}
+.notFound{
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.redText span{
+    color: #e40303;
+}
+.profileInfo h3{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 17px;
+}
+.profileInfo svg{
+    font-size: 15px;
+    padding: 7px;
+    border-radius: 10px;
+   
+}
+.ativo svg{
+    color: #f7f7f7;
+    background-color: #02c212;
+
+}
+.inativo svg{
+    color: #f7f7f7;
+    background-color: #d60e0e;
+}
+@media (max-width:850px) {
+    .residentProfile {
+        padding: 20px;
+    }
+    .personalInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .responsible {
+        font-size: 14px;
+        margin-top: 1em;
+    }
+    .profileContent {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 14px;
+        width: 100%;
+        padding:0;
+    }
+    .actions{
+        margin-top: 2em;
+        padding:0;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: start;
+        font-size: 14px;
+    }
+    .actions button{
+        background-color: #e4a403;
+        color: #f7f7f7;
+        padding:15px 25px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: 500;
+        justify-content: center;
+    }
+    .yelowBtn{
+        background-color: #e4a403;
+        color: #f7f7f7;
+        padding:15px 25px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: 500;
+        justify-content: center;
+    }
+    .redBtn{
+    
+        background-color: #e40303;
+        color: #f7f7f7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding:15px 25px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: 500;
+        gap: 5px; 
+    }
+    .residentProfile h3{
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,151 @@
+.loginContainer {
+    max-width: 450px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: transparent;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.loginContainer h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.type{
+    font-size: 12px;
+    margin: 20px 0;
+    color:#0000008f
+}
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+.formGroup label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.labelText {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: none;
+    box-sizing: border-box;
+    margin-top: 5px;
+    outline: none;
+    background-color: transparent;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+    transition: border 0.3s ease;
+}
+
+.loginContainer select {
+    width: 100%;
+    border: none ;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+    border-radius: 1px;
+}
+
+.input:focus {
+    border-color: #e4a403;
+    background-color: #fff;
+}
+
+.submitButton {
+    background-color: #e4a403;
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.submitButton:hover {
+    background-color: #d28b02;
+}
+.submitButton:disabled{
+    background-color: #555;
+  }
+.submitButton:focus {
+    outline: none;
+}
+
+.hiddenInput {
+    display: none !important;
+}
+
+.rmPhoto {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+    cursor: pointer;
+    background: transparent;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.customFileUpload {
+    display: inline-block;
+    cursor: pointer;
+    background: transparent;
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 1em;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+
+}
+
+.customFileUpload:hover {
+    border: solid 1px #e4a403;
+}
+
+.formGroup img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.customFileUpload svg {
+    font-size: 25px;
+    color: #333;
+}
+
+@media (max-width: 500px) {
+    .loginContainer {
+        padding: 20px;
+    }
+
+    .loginContainer h2 {
+        font-size: 20px;
+    }
+}

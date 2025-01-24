@@ -1,0 +1,55 @@
+.residentCard{
+    background-color: #f7b000;
+    margin: .5em 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 700px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    gap: 20px;
+    cursor: pointer;
+}
+.infoContainer{
+    display: flex;
+    align-items: center;
+    gap: 15px
+}
+.residentCard:hover {
+    background-color: #dd9f01;
+}
+.imageProfile img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.info p{
+    color: #f7f7f7;
+    font-weight: 600;
+    font-size: 13px;
+}
+.info span{
+    color: #f7f7f7;
+    font-size: 12px;
+}
+.status{
+    background-color: rgb(250, 249, 249);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 10px;
+}
+.inativo{
+    color: #d40505;
+}
+.ativo{
+    color: #1ba109;
+}
+@media (max-width:700px) {
+    .residentCard{
+        max-width: 90%;
+    }
+}

@@ -1,0 +1,28 @@
+.card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 400px;
+    border-radius: 10px;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform .3s ease;
+}
+.card span {
+    background-color: #f7b000;
+    padding: 25px;
+    color: #f7f7f7;
+    font-size: 20px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;    
+}
+
+.card p{
+    text-align: start;
+    padding:0 1em ;
+    font-size: 0.8rem !important;
+
+}
+.card:hover{
+    transform: scale(1.1);
+}
