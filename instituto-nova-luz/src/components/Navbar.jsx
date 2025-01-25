@@ -44,12 +44,12 @@ export default function Navbar() {
     return (
         <header className={styles.navbar}>
             {modalOpen && (
-                <Modal 
-                    okBtn={handleLogout} 
-                    cancelBtn={() => setModalOpen(false)} 
-                    strongTitle="Encerrar seção" 
-                    text="Deseja encerrar seção?" 
-                    icon={<MdExitToApp />} 
+                <Modal
+                    okBtn={handleLogout}
+                    cancelBtn={() => setModalOpen(false)}
+                    strongTitle="Encerrar seção"
+                    text="Deseja encerrar seção?"
+                    icon={<MdExitToApp />}
                 />
             )}
             <div className={styles.logo}>
@@ -67,7 +67,7 @@ export default function Navbar() {
                                     <p><span>{user?.email || "Email não disponível"}</span></p>
                                 </div>
                             </div>
-                            <li onClick={() => handleDirect('/dashboard')}>Painel de controle <span><RxDashboard /></span></li>
+                            {user.uid === import.meta.env.VITE_ADMIN_USER_ID && <li onClick={() => handleDirect('/dashboard')}>Painel de controle <span><RxDashboard /></span></li>}
                             <li onClick={() => handleDirect('/perfil')}>Perfil <span><BiSolidEdit /></span></li>
                             <li className={styles.exitBtn} onClick={() => setModalOpen(true)}>Sair <span><IoExitOutline /></span></li>
                         </ul>

@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const {login, user} = useAuth()
+    const {login, user, error} = useAuth()
     const {showMessage} = useMessage()
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,7 +14,7 @@ export default function Login() {
             await login(email, password)
             showMessage(`Bem vindo de volta`, "success", 5000)
         } catch (error) {
-            showMessage(`Erro ao fazer login`, "error", 5000)
+            showMessage(`Suas credenciais podem estar incorretas`, "error", 5000)
         }
     };
     

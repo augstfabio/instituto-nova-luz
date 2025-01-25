@@ -19,15 +19,20 @@ export default function ExitPlug() {
     useEffect(() => {
         const getResident = async () => {
             try {
-                await getResidentById(id);
-              
+                await getResidentById(id); 
             } catch (error) {
                 showMessage(`Erro ao buscar residente`, "error", 5000);
-                console.log(error)
+                console.error(error);
             }
         };
         getResident();
-    }, []);
+    }, [id, getResidentById, showMessage]);
+    
+    useEffect(() => {
+        if (resident && resident.exitPlug) {
+            navigate(`/dashboard/residente/${id}/perfil`);
+        }
+    }, [resident, id, navigate]);
     const handleCancel = () => {
         setShowModal(false)
         navigate(`/dashboard/residente/${id}/perfil`)
@@ -58,10 +63,10 @@ export default function ExitPlug() {
             {showModal && <Modal cancelBtn={handleCancel} okBtn={() => setShowModal(false)} icon={<CgDanger />} strongTitle="Atenção" text="Certifique-se de que os dados estão corretos. Após a criação da ficha de saída, o residente estará com status de DESLIGADO, mas continuará no banco de dados." />}
             <div className={styles.profileContainer}>
                 {resident && <>
-                   
+
                     <img src={resident.imageUrl} alt={resident.name} />
-                    <p onClick={()=>navigate(`/dashboard/residente/${id}/perfil`)}>{resident.name}</p>
-                   
+                    <p onClick={() => navigate(`/dashboard/residente/${id}/perfil`)}>{resident.name}</p>
+
                 </>}
             </div>
             <form onSubmit={handleSubmit} className={styles.exitForm}>

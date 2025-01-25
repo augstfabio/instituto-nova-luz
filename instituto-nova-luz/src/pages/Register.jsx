@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './Register.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { useMessage } from '../context/MessageContext';
 
 export default function Register() {
     const [name, setName] = useState('');
@@ -9,28 +10,29 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [agree, setAgree] = useState(false);
+    const {showMessage } = useMessage() 
     const {register} = useAuth()
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (password !== confirmPassword) {
-            alert("As senhas não coincidem!");
+            showMessage("As senhas não coincidem!", "error");
             return;
         }
 
         if (password.length < 6) {
-            alert("A senha deve ter no mínimo 6 caracteres!");
+            showMessage("A senha deve ter no mínimo 6 caracteres!", "error");
             return;
         }
 
         if (!agree) {
-            alert("Você precisa concordar com os termos!");
+            showMessage("Você precisa concordar com os termos!","error");
             return;
         }
         try {
             await register(email, password, name)
         } catch (error) {
-            alert("erro ao criar conta:"+error)
+            showMessage("Erro ao critar conta, tente outras credenciais")
         }
     };
 

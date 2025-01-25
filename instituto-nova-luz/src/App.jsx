@@ -14,6 +14,11 @@ import NewResident from './pages/NewResident'
 import ScrollToTop from './tools/ScrollToTop'
 import ExitPlug from './pages/ExitPlug'
 import EditInfo from './pages/EditInfo'
+import Profile from './pages/Profile'
+import ForgotPassword from './pages/ForgotPassword'
+import PrivateRoute from './components/PrivateRoute'
+import PrivateAdminRoute from './components/PrivateAdminRoute'
+
 
 
 
@@ -28,15 +33,18 @@ function App() {
           <FixedWhatsAppButton />
           <Routes>
             <Route path='/' element={<Home />}></Route>
-            <Route path='/dashboard' element={<Dashboard />}>
-            </Route> 
-            <Route path='/dashboard/residente/:id/ficha-de-saida' element={<ExitPlug />}></Route>
-            <Route path='/dashboard/residente/:id/perfil/editar' element={<EditInfo />}></Route>
+            <Route path='/recuperar-senha' element={<ForgotPassword />}></Route>
+
+            <Route path='/perfil' element={<PrivateRoute><Profile /></PrivateRoute>}></Route>
 
             <Route path='/register' element={<PrivateLoginAndRegister><Register /></PrivateLoginAndRegister>}></Route>
             <Route path='/login' element={<PrivateLoginAndRegister><Login /></PrivateLoginAndRegister>}></Route>
-            <Route path='/dashboard/residente/:id/perfil' element={<ResidentProfile />}></Route>
-            <Route path='/dashboard/residente/novo' element={<NewResident />}></Route>
+
+            <Route path='/dashboard' element={<PrivateAdminRoute><Dashboard /></PrivateAdminRoute>} />
+            <Route path='/dashboard/residente/:id/ficha-de-saida' element={<PrivateAdminRoute><ExitPlug /></PrivateAdminRoute>} />
+            <Route path='/dashboard/residente/:id/perfil/editar' element={<PrivateAdminRoute><EditInfo /></PrivateAdminRoute>} />
+            <Route path='/dashboard/residente/:id/perfil' element={<PrivateAdminRoute><ResidentProfile /></PrivateAdminRoute>} />
+            <Route path='/dashboard/residente/novo' element={<PrivateAdminRoute><NewResident /></PrivateAdminRoute>} />
           </Routes>
         </MessageProvider>
         <Footer />
