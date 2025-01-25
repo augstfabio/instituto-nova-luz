@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./editInfo.module.css";
+import styles from "./EditInfo.module.css";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 import useResident from "../hooks/useResident";
