@@ -22,6 +22,7 @@ const NewResident = () => {
   const [comorbidities, setComorbidities] = useState('');
   const [otherHospitalizations, setOtherHospitalizations] = useState('');
   const [legalIssues, setLegalIssues] = useState('');
+  const [obs, setObs] = useState("")
   const [responsible, setResponsible] = useState({
     name: '',
     address: '',
@@ -87,14 +88,13 @@ const NewResident = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     try {
-      if (!image) {
-        showMessage("A foto é obrigatória", "error")
-        return
+      let fetchImg = "";
+      if (image) {
+        fetchImg = await getImageUrl(image);
+        setImageUrl(fetchImg);
       }
-      const fetchImg = await getImageUrl(image);
-      setImageUrl(fetchImg);
       await createResident({
         name,
         cpf,
@@ -107,13 +107,14 @@ const NewResident = () => {
         otherHospitalizations,
         legalIssues,
         responsible,
-        imageUrl: fetchImg
+        imageUrl: fetchImg || null
       });
-      showMessage("Residente cadastrado com sucesso!", "success")
-      navigate("/dashboard")
+
+      showMessage("Residente cadastrado com sucesso!", "success");
+      navigate("/dashboard");
     } catch (error) {
-      console.error('Erro ao cadastrar o residente', error);
-    }finally{setLoading(false)}
+      showMessage('Erro ao cadastrar o residente', "error");
+    } finally { setLoading(false) }
   };
 
   return (
@@ -133,7 +134,7 @@ const NewResident = () => {
           />
         </div>
         <div className={styles.formGroup}>
-          <span className={styles.labelText}>Foto * </span>
+          <span className={styles.labelText}>Foto </span>
           {(!image && !imageUrl) && <p className={styles.type}>Dica: Para evitar que a foto fique esticada, tente usar uma o mais quadrada possível.</p>}
           <div className={styles.imageField}>
             {image && <img src={URL.createObjectURL(image)} alt="Preview" />}
@@ -154,7 +155,7 @@ const NewResident = () => {
           {image && <button onClick={() => setImage(null)} className={styles.rmPhoto}>Remover foto</button>}
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="cpf">CPF *</label>
+          <label htmlFor="cpf">CPF</label>
           <input
             type="text"
             id="cpf"
@@ -162,11 +163,10 @@ const NewResident = () => {
             className={styles.input}
             value={cpf}
             onChange={handleChange}
-            required
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="phone">Telefone *</label>
+          <label htmlFor="phone">Telefone</label>
           <input
             type="text"
             id="phone"
@@ -174,11 +174,10 @@ const NewResident = () => {
             className={styles.input}
             value={phone}
             onChange={handleChange}
-            required
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="address">Endereço *</label>
+          <label htmlFor="address">Endereço</label>
           <input
             type="text"
             id="address"
@@ -186,19 +185,19 @@ const NewResident = () => {
             className={styles.input}
             value={address}
             onChange={handleChange}
-            required
+
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="born">Data de nascimento *</label>
+          <label htmlFor="born">Data de nascimento</label>
           <input
-            type="date"
+            type="text"
             id="born"
             name="born"
             className={styles.input}
             value={born}
             onChange={handleChange}
-            required
+
           />
         </div>
         <div className={styles.formGroup}>
@@ -213,15 +212,15 @@ const NewResident = () => {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="entryDate">Data de entrada *</label>
+          <label htmlFor="entryDate">Data de entrada</label>
           <input
-            type="date"
+            type="text"
             id="entryDate"
             name="entryDate"
             className={styles.input}
             value={entryDate}
             onChange={handleChange}
-            required
+
           />
         </div>
         <div className={styles.formGroup}>
@@ -270,7 +269,7 @@ const NewResident = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="responsible.name">Nome do responsável *</label>
+          <label htmlFor="responsible.name">Nome do responsável</label>
           <input
             type="text"
             id="responsible.name"
@@ -293,7 +292,7 @@ const NewResident = () => {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="responsible.phone">Telefone do responsável *</label>
+          <label htmlFor="responsible.phone">Telefone do responsável</label>
           <input
             type="text"
             id="responsible.phone"
@@ -301,11 +300,11 @@ const NewResident = () => {
             className={styles.input}
             value={responsible.phone}
             onChange={handleChange}
-            required
+
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="responsible.cpf">CPF do responsável *</label>
+          <label htmlFor="responsible.cpf">CPF do responsável</label>
           <input
             type="text"
             id="responsible.cpf"
@@ -313,7 +312,7 @@ const NewResident = () => {
             className={styles.input}
             value={responsible.cpf}
             onChange={handleChange}
-            required
+
           />
         </div>
         <div className={styles.formGroup}>
@@ -326,6 +325,10 @@ const NewResident = () => {
             value={responsible.familiarity}
             onChange={handleChange}
           />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="text">Observações</label>
+          <textarea value={obs} onChange={(e) => setObs(e.target.value)} id="obs" />
         </div>
         <button type="submit" disabled={loading} className={styles.submitButton}>
           {loading ? "Carregando..." : "Cadastrar"}

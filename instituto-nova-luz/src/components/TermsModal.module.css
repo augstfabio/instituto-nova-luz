@@ -1,0 +1,66 @@
+
+.openButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.openButton:hover {
+    background-color: #0056b3;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: white;
+    padding: 30px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80%;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.termsText {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: start;
+}
+.termsText a{
+    color: #f7b000;
+}
+.termsText p{
+    margin: 5px 0;
+}
+.closeButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f7b000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+}
+

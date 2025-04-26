@@ -1,0 +1,392 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+.backButton {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.backButton:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.backIcon {
+    font-size: 1.2rem;
+}
+
+.title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(90deg, #333, #555);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.content {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.infoBox {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid #e4a403;
+}
+
+.infoHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.infoTitle {
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+}
+
+.counter {
+    background: #e4a403;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.infoText {
+    color: #555;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.changesInfo {
+    margin-top: 0.5rem;
+    color: #ffc107;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.imageCard {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.imageContainer {
+    position: relative;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.imageContainer:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.deleteButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #ff4444;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.deleteButton:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.deleteIcon {
+    font-size: 1.1rem;
+}
+
+.statusBadge {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.statusBadge.uploaded {
+    background-color: rgba(40, 167, 69, 0.9);
+}
+
+.statusBadge.pending {
+    background-color: rgba(255, 193, 7, 0.9);
+}
+
+.emptyState {
+    text-align: center;
+    padding: 3rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    border: 2px dashed #e0e0e0;
+}
+
+.emptyIcon {
+    font-size: 2.5rem;
+    color: #e4a403;
+    margin-bottom: 1rem;
+}
+
+.emptyState p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.emptyState small {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.addButtonWrapper {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 180px;
+}
+
+.addButton, .saveButton, .cancelButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    min-width: 180px;
+    box-sizing: border-box;
+    text-align: center;
+    flex: 1 1 auto;
+}
+
+.addButton {
+    background: #e4a403;
+    color: white;
+    width: 100%;
+}
+
+.addButton:hover:not(.buttonDisabled) {
+    background: #d19703;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(228, 164, 3, 0.3);
+}
+
+.buttonDisabled {
+    background-color: #c5b691 !important;
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.saveButton {
+    background: #28a745;
+    color: white;
+}
+
+.saveButton:hover:not(:disabled) {
+    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.saveButton:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.cancelButton {
+    background: #6c757d;
+    color: white;
+}
+
+.cancelButton:hover:not(:disabled) {
+    background: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+.cancelButton:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.buttonIcon {
+    font-size: 1.1rem;
+}
+.errorText {
+    color: #ff4444;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+    
+    .header {
+        padding-top: 1rem;
+    }
+    
+    .backButton {
+        position: static;
+        margin-bottom: 1rem;
+        justify-content: start;
+        width: 100%;
+        
+    }
+    
+    .title {
+        font-size: 1.6rem;
+        text-align: start;
+        padding:0 1.5rem ;
+        
+    }
+    
+    .subtitle {
+        font-size: 0.95rem;
+        text-align: start;
+        padding:0 1.5rem ;
+    }
+    
+    .content {
+        padding: 1.5rem;
+    }
+    
+    .actions {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .addButtonWrapper, .saveButton, .cancelButton {
+        width: 100%;
+    }
+    
+    .addButton, .saveButton, .cancelButton {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .content {
+        padding: 1rem;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+    }
+    
+    .infoBox {
+        padding: 1rem;
+    }
+    
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+}

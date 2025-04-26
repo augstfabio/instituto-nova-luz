@@ -28,7 +28,10 @@
     width: 100%;
     text-align: left;
 }
-
+.formGroup textarea {
+    resize: none;
+    height: auto !important;
+}
 .formGroup label {
     display: block;
     font-size: 14px;
@@ -45,7 +48,7 @@
     color: #555;
 }
 
-.input {
+.input, .formGroup textarea {
     width: 100%;
     padding: 12px;
     font-size: 14px;

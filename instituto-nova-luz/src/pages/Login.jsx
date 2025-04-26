@@ -7,14 +7,19 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {login, user, error} = useAuth()
+    const [loading, setLoading] = useState()
     const {showMessage} = useMessage()
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true)
         try {
             await login(email, password)
             showMessage(`Bem vindo de volta`, "success", 5000)
         } catch (error) {
             showMessage(`Suas credenciais podem estar incorretas`, "error", 5000)
+        }
+        finally{
+            setLoading(false)
         }
     };
     
@@ -49,7 +54,7 @@ export default function Login() {
                     />
                 </div>
 
-                <button type="submit" className={styles.submitButton}>Entrar</button>
+                <button disabled={loading? true: false} type="submit" className={styles.submitButton}>{loading ? "Entrando...":"Entrar"}</button>
 
                 <div className={styles.forgotPassword}>
                     <Link to="/recuperar-senha">Esqueceu sua senha?</Link>

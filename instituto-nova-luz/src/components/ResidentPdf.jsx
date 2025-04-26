@@ -4,11 +4,12 @@ import styles from './ResidentPdf.module.css';
 import logo from '../assets/logo.jpeg'
 import { GoDesktopDownload } from "react-icons/go";
 import { useMessage } from '../context/MessageContext';
+
 const ResidentPdf = ({ residente }) => {
     const [loading, setLoading] = useState(false)
     const contentRef = useRef();
-    const [imageBase64, setImageBase64] = useState(null);
     const { showMessage } = useMessage()
+
     const generatePDF = () => {
         setLoading(true);
         const element = contentRef.current;
@@ -30,23 +31,6 @@ const ResidentPdf = ({ residente }) => {
         return data && data.trim() !== "" ? data : "Não informado";
     };
 
-    useEffect(() => {
-        const loadImageAsBase64 = async () => {
-            if (residente.imageUrl) {
-                try {
-                    const response = await fetch(residente.imageUrl);
-                    const blob = await response.blob();
-                    const reader = new FileReader();
-                    reader.readAsDataURL(blob);
-                    reader.onloadend = () => setImageBase64(reader.result);
-                } catch (error) {
-                    console.error("Erro ao carregar imagem:", error);
-                }
-            }
-        };
-        loadImageAsBase64();
-    }, [residente.imageUrl]);
-
     return (
         <>
             <button
@@ -57,47 +41,132 @@ const ResidentPdf = ({ residente }) => {
                 <GoDesktopDownload />
                 {loading ? "Baixando..." : "Baixar informações"}
             </button>
+
             <div ref={contentRef} className={styles.container}>
                 <div className={styles.header}>
-                    <img src={logo} alt="" />
-                    <div className={styles.text}>
-                        <h1 className={styles.title}>ASSOCIAÇÃO DE APOIO AOS DEPENDENTES
-                            QUÍMICOS DE TURIAÇU MA “ASADEQTMA”
-                            COMUNIDADE TERAPÊUTICA “INSTITUTO NOVA LUZ”</h1>
-                        <p>CNPJ: 52.400.404/0001-76 <br /> email: institutonovaluz22@outlook.com</p>
+                    <img src={logo} alt="Logo" className={styles.logo} />
+                    <div className={styles.headerText}>
+                        <h1 className={styles.title}>ASSOCIAÇÃO DE APOIO AOS DEPENDENTES QUÍMICOS DE TURIAÇU MA</h1>
+                        <h2 className={styles.subtitle}>"ASADEQTMA" - COMUNIDADE TERAPÊUTICA "INSTITUTO NOVA LUZ"</h2>
+                        <p className={styles.institutionInfo}>CNPJ: 52.400.404/0001-76 | email: institutonovaluz22@outlook.com</p>
                     </div>
-                    <span></span>
+                    <div className={styles.headerSpace}></div>
                 </div>
-                <h2 className={styles.subtitle}>Relatório de residente</h2>
-                {imageBase64 ? (
-                    <img src={imageBase64} alt="Residente" className={styles.image} />
-                ) : (
-                    <p className={styles.info}>Imagem não disponível</p>
-                )}
-                <p className={styles.info}><span className={styles.bold}>Nome:</span> {renderData(residente.name)}</p>
-                <p className={styles.info}><span className={styles.bold}>Gênero:</span> {renderData(residente.gender)}</p>
-                <p className={styles.info}><span className={styles.bold}>Data de Nascimento:</span> {renderData(residente.born)}</p>
-                <p className={styles.info}><span className={styles.bold}>Endereço:</span> {renderData(residente.address)}</p>
-                <p className={styles.info}><span className={styles.bold}>Telefone:</span> {renderData(residente.phone)}</p>
-                <p className={styles.info}><span className={styles.bold}>CPF:</span> {renderData(residente.cpf)}</p>
-                <p className={styles.info}><span className={styles.bold}>Data de Entrada:</span> {renderData(residente.entryDate)}</p>
-                <p className={styles.info}><span className={styles.bold}>Comorbidades:</span> {renderData(residente.comorbidities)}</p>
-                <p className={styles.info}><span className={styles.bold}>Internações Anteriores:</span> {renderData(residente.otherHospitalizations)}</p>
-                <p className={styles.info}><span className={styles.bold}>Problemas judiciais:</span> {renderData(residente.legalIssues)}</p>
-                {residente.exitPlug && <>
-                    <p className={styles.info}><span className={styles.bold}>tempo de residência:</span> {renderData(residente.exitPlug.time)}</p>
-                    <p className={styles.info}><span className={styles.bold}>Data de saída:</span> {renderData(residente.exitPlug.date)}</p>
-                    <p className={styles.info}><span className={styles.bold}>Motivo da saida:</span> {renderData(residente.exitPlug.reason)}</p>
 
+                <div className={styles.section}>
+                    <h2 className={styles.sectionTitle}>FICHA DE CADASTRO DO RESIDENTE</h2>
 
-                </>}
-                <h2 className={styles.subtitle}>Responsável</h2>
-                <p className={styles.info}><span className={styles.bold}>Nome:</span> {renderData(residente.responsible.name)}</p>
-                <p className={styles.info}><span className={styles.bold}>Familiaridade:</span> {renderData(residente.responsible.familiarity)}</p>
-                <p className={styles.info}><span className={styles.bold}>Telefone:</span> {renderData(residente.responsible.phone)}</p>
-                <p className={styles.info}><span className={styles.bold}>CPF:</span> {renderData(residente.responsible.cpf)}</p>
-                <p className={styles.info}><span className={styles.bold}>Endereço:</span> {renderData(residente.responsible.address)}</p>
+                    <div className={styles.gridContainer}>
+                        <div className={styles.gridItem}>
+                            <p className={styles.label}>Nome Completo:</p>
+                            <p className={styles.value}>{renderData(residente.name)}</p>
+                        </div>
+                        <div className={styles.gridItem}>
+                            <p className={styles.label}>Data de Nascimento:</p>
+                            <p className={styles.value}>{renderData(residente.born)}</p>
+                        </div>
+                        <div className={styles.gridItem}>
+                            <p className={styles.label}>Gênero:</p>
+                            <p className={styles.value}>{renderData(residente.gender)}</p>
+                        </div>
+                        <div className={styles.gridItem}>
+                            <p className={styles.label}>CPF:</p>
+                            <p className={styles.value}>{renderData(residente.cpf)}</p>
+                        </div>
+                        <div className={styles.gridItem}>
+                            <p className={styles.label}>Endereço:</p>
+                            <p className={styles.value}>{renderData(residente.address)}</p>
+                        </div>
+                        <div className={styles.gridItem}>
+                            <p className={styles.label}>Telefone:</p>
+                            <p className={styles.value}>{renderData(residente.phone)}</p>
+                        </div>
+                        <div className={styles.gridItem}>
+                            <p className={styles.label}>Data de Entrada:</p>
+                            <p className={styles.value}>{renderData(residente.entryDate)}</p>
+                        </div>
+                        {residente.exitPlug && (
+                            <div className={styles.gridItem}>
+                                <p className={styles.label}>Data de Saída:</p>
+                                <p className={styles.value}>{renderData(residente.exitPlug.date)}</p>
+                            </div>
+                        )}
+                    </div>
+                </div>
 
+                <div className={styles.section}>
+                    <h2 className={styles.sectionTitle}>INFORMAÇÕES ADICIONAIS</h2>
+                    <div className={styles.infoBlock}>
+                        <p className={styles.label}>Comorbidades:</p>
+                        <p className={styles.value}>{renderData(residente.comorbidities)}</p>
+                    </div>
+                    <div className={styles.infoBlock}>
+                        <p className={styles.label}>Internações Anteriores:</p>
+                        <p className={styles.value}>{renderData(residente.otherHospitalizations)}</p>
+                    </div>
+                    <div className={styles.infoBlock}>
+                        <p className={styles.label}>Problemas judiciais:</p>
+                        <p className={styles.value}>{renderData(residente.legalIssues)}</p>
+                    </div>
+                    {residente.exitPlug && (
+                        <>
+                            <div className={styles.infoBlock}>
+                                <p className={styles.label}>Tempo de residência:</p>
+                                <p className={styles.value}>{renderData(residente.exitPlug.time)}</p>
+                            </div>
+                            <div className={styles.infoBlock}>
+                                <p className={styles.label}>Motivo da saída:</p>
+                                <p className={styles.value}>{renderData(residente.exitPlug.reason)}</p>
+                            </div>
+                        </>
+                    )}
+                    <div className={styles.infoBlock}>
+                        <p className={styles.label}>Observações:</p>
+                        <p className={styles.valueLarge}>{renderData(residente.obs)}</p>
+                    </div>
+                </div>
+
+                <div className={styles.section}>
+                    <h2 className={styles.sectionTitle}>RESPONSÁVEL LEGAL</h2>
+                    <div className={styles.gridContainer}>
+                        <div className={styles.gridItem}>
+                            <p className={styles.label}>Nome:</p>
+                            <p className={styles.value}>{renderData(residente.responsible.name)}</p>
+                        </div>
+                        <div className={styles.gridItem}>
+                            <p className={styles.label}>Familiaridade:</p>
+                            <p className={styles.value}>{renderData(residente.responsible.familiarity)}</p>
+                        </div>
+                        <div className={styles.gridItem}>
+                            <p className={styles.label}>Telefone:</p>
+                            <p className={styles.value}>{renderData(residente.responsible.phone)}</p>
+                        </div>
+                        <div className={styles.gridItem}>
+                            <p className={styles.label}>CPF:</p>
+                            <p className={styles.value}>{renderData(residente.responsible.cpf)}</p>
+                        </div>
+                        <div className={styles.gridItemFull}>
+                            <p className={styles.label}>Endereço:</p>
+                            <p className={styles.value}>{renderData(residente.responsible.address)}</p>
+                        </div>
+                    </div>
+                </div>
+                <h2 className={styles.sectionTitle}>RESPONSÁVEL NA ASSOCIAÇÃO</h2>
+                <div className={styles.signatureSection}>
+                    <div className={styles.signatureField}>
+                        <p className={styles.label}>Responsável pelo Acolhimento:</p>
+                        <div className={styles.signatureLine}></div>
+
+                    </div>
+                    <div className={styles.signatureField}>
+                        <p className={styles.label}>Função:</p>
+                        <div className={styles.signatureLine}></div>
+                    </div>
+                    <div className={styles.signatureField}>
+                        <p className={styles.label}>Assinatura:</p>
+                        <div className={styles.signatureLine}></div>
+                    </div>
+                </div>
             </div>
         </>
     );

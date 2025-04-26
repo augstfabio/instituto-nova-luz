@@ -1,103 +1,102 @@
 .registerContainer {
-    max-width: 450px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: transparent;
-    border-radius: 12px;
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: transparent;
+  border-radius: 12px;
 
-    text-align: center;
-  }
-  
-  .registerContainer h2 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .registerForm {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .registerForm a, .login a {
-    color: #e4a403;
-    text-decoration: none;
+  text-align: center;
 }
-  .formGroup {
-    margin-bottom: 20px;
-    width: 100%;
-    text-align: left;
-  }
-  
-  .formGroup label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #555;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 12px;
-    font-size: 14px;
-    border: none;
-    box-sizing: border-box;
-    margin-top: 5px;
-    outline: none;
-    background-color: transparent;
-    transition: border 0.3s ease;
-    border-bottom: solid 1px rgba(0, 0, 0, 0.1) ;
-  }
-  
-  .input:focus {
-    border-color: #e4a403;
-    background-color: #fff;
-  }
-  
-  .checkboxContainer {
-    display: flex;
-    align-items: center;
-    margin: 2em 0;
-    font-size: 13px;
-  }
-  
-  .checkboxContainer input {
-    margin-right: 10px;
-  }
-  
-  .submitButton {
-    background-color: #e4a403;
-    color: white;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%;
+
+.registerContainer h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.registerForm a, .login a {
+  color: #e4a403;
+  text-decoration: none;
+}
+.formGroup {
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: left;
+}
+
+.formGroup label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: none;
+  box-sizing: border-box;
+  margin-top: 5px;
+  outline: none;
+  background-color: transparent;
+  transition: border 0.3s ease;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1) ;
+}
+
+.input:focus {
+  border-color: #e4a403;
+  background-color: #fff;
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  margin: 2em 0;
+  font-size: 13px;
+}
+
+.checkboxContainer input {
+  margin-right: 10px;
+}
+
+.submitButton {
+  background-color: #e4a403;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.submitButton:hover {
+  background-color: #d28b02;
+}
+
+.submitButton:focus {
+  outline: none;
+}
+.login{
+  margin: 1em ;
+
+}
+
+@media (max-width: 500px) {
+  .registerContainer {
+    padding: 20px;
   }
 
-  .submitButton:hover {
-    background-color: #d28b02;
+  .registerContainer h2 {
+    font-size: 20px;
   }
-  
-  .submitButton:focus {
-    outline: none;
-  }
-  .login{
-    margin: 1em ;
-
-  }
-
-  @media (max-width: 500px) {
-    .registerContainer {
-      padding: 20px;
-    }
-  
-    .registerContainer h2 {
-      font-size: 20px;
-    }
-  }
-  
+}

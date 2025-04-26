@@ -1,50 +1,131 @@
 .container {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #333;
+    line-height: 1.5;
 }
-.header{
+
+.header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 5em;
-    gap: 30px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e4a403;
+    padding-bottom: 20px;
 }
 
-.header p{
-    font-size: 14px;
+.logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.headerText {
+    flex: 1;
     text-align: center;
+    padding: 0 20px;
 }
-.header span{
-    width: 100px;
-    height: 100px;
-}
-.header img{
-   width: 100px;
-   height: 100px;
-   object-fit: cover;
-}
+
 .title {
-    text-align: center;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-    max-width: 400px;
- 
+    margin-bottom: 5px;
 }
 
 .subtitle {
-    font-size: 18px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    text-align: start;
-}
-
-.info {
     font-size: 14px;
-    margin: 5px 0;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.bold {
+.institutionInfo {
+    font-size: 12px;
+    color: #555;
+}
+
+.headerSpace {
+    width: 80px;
+}
+
+.section {
+    margin-bottom: 25px;
+    page-break-inside: avoid;
+}
+
+.sectionTitle {
+    font-size: 14px;
     font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.gridItem {
+    margin-bottom: 10px;
+}
+
+.gridItemFull {
+    grid-column: span 2;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 3px;
+    color: #555;
+}
+
+.value {
+    font-size: 13px;
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+    min-height: 20px;
+}
+
+.valueLarge {
+    font-size: 13px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    min-height: 80px;
+    margin-top: 5px;
+}
+
+.infoBlock {
+    margin-bottom: 15px;
+}
+
+.signatureSection {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+
+}
+
+.signatureField {
+    width: 30%;
+    text-align: center;
+}
+
+.signatureLine {
+    height: 1px;
+    background-color: #333;
+    margin: 30px 0 5px;
+}
+
+.signatureText {
+    font-size: 11px;
+    color: #777;
 }
 
 .button {
@@ -63,13 +144,12 @@
     border: none;
 }
 
-.button:hover{
+.button:hover {
     background-color: #c58e04;
 }
 
-.image {
-    margin: 20px auto;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
+@media print {
+    .button {
+        display: none;
+    }
 }

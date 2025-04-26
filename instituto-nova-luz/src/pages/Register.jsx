@@ -3,6 +3,7 @@ import styles from './Register.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { useMessage } from '../context/MessageContext';
+import TermsModal from '../components/TermsModal';
 
 export default function Register() {
     const [name, setName] = useState('');
@@ -10,7 +11,9 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [agree, setAgree] = useState(false);
-    const {showMessage } = useMessage() 
+    const [showModal, setShowModal] = useState(false)
+    const {showMessage } = useMessage();
+    const [loading, setLoading] = useState(false)
     const {register} = useAuth()
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,15 +32,20 @@ export default function Register() {
             showMessage("Você precisa concordar com os termos!","error");
             return;
         }
+        setLoading(true)
         try {
+
             await register(email, password, name)
         } catch (error) {
             showMessage("Erro ao critar conta, tente outras credenciais")
+        } finally{
+            setLoading(false)
         }
     };
-
+    
     return (
         <div className={styles.registerContainer}>
+            <TermsModal showModal={showModal} closeModal={()=>setShowModal(false)}/>
             <h2>Criar Conta</h2>
             <form onSubmit={handleSubmit} className={styles.registerForm}>
                 <div className={styles.formGroup}>
@@ -100,10 +108,10 @@ export default function Register() {
                         onChange={() => setAgree(!agree)}
                         required
                     />
-                    <label htmlFor="agree">Concordo com os <a href="#">termos e condições</a></label>
+                    <label htmlFor="agree">Concordo com os <a onClick={()=>setShowModal(true)} href="#">termos e condições</a></label>
                 </div>
 
-                <button type="submit" className={styles.submitButton}>Criar</button>
+                <button disabled={loading? true: false} type="submit" className={styles.submitButton}>{loading ? "carregando...":"Criar conta"}</button>
             </form>
             <div className={styles.login}>
                <p>Ou</p>

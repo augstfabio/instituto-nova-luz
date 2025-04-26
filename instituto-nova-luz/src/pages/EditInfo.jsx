@@ -26,6 +26,7 @@ const EditInfo = () => {
   const [otherHospitalizations, setOtherHospitalizations] = useState("");
   const [legalIssues, setLegalIssues] = useState("");
   const [loading, setLoading] = useState("");
+  const [obs, setObs] = useState("")
   const [responsible, setResponsible] = useState({ name: "", address: "", phone: "", cpf: "", familiarity: "" });
   const [exitPlug, setExitPlug] = useState(null)
   const navigate = useNavigate()
@@ -94,27 +95,23 @@ const EditInfo = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (!imageUrl && !image) {
-      showMessage("Nenhuma imagem selecionada", "error");
-      setLoading(false); 
-      return;
-    }
-    let fetchedImg = imageUrl;
+
+    let fetchedImg = imageUrl || "";
     if (image) {
       try {
-        fetchedImg = await getImageUrl(image);  
-        setImageUrl(fetchedImg); 
+        fetchedImg = await getImageUrl(image);
+        setImageUrl(fetchedImg);
       } catch (error) {
         showMessage("Erro ao enviar a imagem", "error");
         setLoading(false);
         return;
       }
     }
-  
+
     try {
       await updateResident(id, {
         name,
-        imageUrl: fetchedImg,  
+        imageUrl: fetchedImg || null,
         cpf,
         phone,
         address,
@@ -125,17 +122,19 @@ const EditInfo = () => {
         otherHospitalizations,
         legalIssues,
         responsible,
-        ...(exitPlug && { exitPlug }),  
-      });
+        obs,
+        ...(exitPlug && { exitPlug }),      });
+
       showMessage("Dados atualizados com sucesso!", "success");
       navigate(`/dashboard/residente/${id}/perfil`);
     } catch (error) {
       showMessage("Erro ao atualizar os dados :(", "error");
     } finally {
-      setLoading(false);  
+      setLoading(false);
     }
   };
-  
+
+
   useEffect(() => {
     const getResident = async () => {
       try {
@@ -154,21 +153,22 @@ const EditInfo = () => {
           setLegalIssues(fetchedResident.legalIssues || "");
           setResponsible(fetchedResident.responsible || { name: "", address: "", phone: "", cpf: "", familiarity: "" });
           setExitPlug(fetchedResident.exitPlug || "");
+          setObs(fetchedResident.obs || "")
         }
       } catch (error) {
         showMessage(`Erro ao buscar residente`, "error", 5000);
         navigate("/")
         console.log(error);
-      } finally{
+      } finally {
         setIsLoaded(true)
       }
     };
     getResident();
-    
+
   }, []);
-  if (!isLoaded){
-    return(
-      <div style={{height:"70vh"}}><Loading/></div>
+  if (!isLoaded) {
+    return (
+      <div style={{ height: "70vh" }}><Loading /></div>
     )
   }
   return (
@@ -207,7 +207,7 @@ const EditInfo = () => {
 
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="cpf">CPF *</label>
+            <label htmlFor="cpf">CPF</label>
             <input
               type="text"
               id="cpf"
@@ -215,11 +215,11 @@ const EditInfo = () => {
               className={styles.input}
               value={cpf}
               onChange={handleChange}
-              required
+
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="phone">Telefone *</label>
+            <label htmlFor="phone">Telefone</label>
             <input
               type="text"
               id="phone"
@@ -227,11 +227,11 @@ const EditInfo = () => {
               className={styles.input}
               value={phone}
               onChange={handleChange}
-              required
+
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="address">Endereço *</label>
+            <label htmlFor="address">Endereço</label>
             <input
               type="text"
               id="address"
@@ -239,19 +239,18 @@ const EditInfo = () => {
               className={styles.input}
               value={address}
               onChange={handleChange}
-              required
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="born">Data de Nascimento *</label>
+            <label htmlFor="born">Data de Nascimento</label>
             <input
-              type="date"
+              type="text"
               id="born"
               name="born"
               className={styles.input}
               value={born}
               onChange={handleChange}
-              required
+
             />
           </div>
           <div className={styles.formGroup}>
@@ -266,15 +265,15 @@ const EditInfo = () => {
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="entryDate">Data de Entrada *</label>
+            <label htmlFor="entryDate">Data de Entrada</label>
             <input
-              type="date"
+              type="text"
               id="entryDate"
               name="entryDate"
               className={styles.input}
               value={entryDate}
               onChange={handleChange}
-              required
+
             />
           </div>
           <div className={styles.formGroup}>
@@ -362,7 +361,7 @@ const EditInfo = () => {
           </>
           }
           <div className={styles.formGroup}>
-            <label htmlFor="responsible.name">Nome do responsável *</label>
+            <label htmlFor="responsible.name">Nome do responsável</label>
             <input
               type="text"
               id="responsible.name"
@@ -370,7 +369,6 @@ const EditInfo = () => {
               className={styles.input}
               value={responsible.name}
               onChange={handleChange}
-              required
             />
           </div>
           <div className={styles.formGroup}>
@@ -385,7 +383,7 @@ const EditInfo = () => {
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="responsible.phone">Telefone do responsável *</label>
+            <label htmlFor="responsible.phone">Telefone do responsável</label>
             <input
               type="text"
               id="responsible.phone"
@@ -393,11 +391,11 @@ const EditInfo = () => {
               className={styles.input}
               value={responsible.phone}
               onChange={handleChange}
-              required
+
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="responsible.cpf">CPF do responsável *</label>
+            <label htmlFor="responsible.cpf">CPF do responsável</label>
             <input
               type="text"
               id="responsible.cpf"
@@ -405,7 +403,7 @@ const EditInfo = () => {
               className={styles.input}
               value={responsible.cpf}
               onChange={handleChange}
-              required
+
             />
           </div>
           <div className={styles.formGroup}>
@@ -419,7 +417,17 @@ const EditInfo = () => {
               onChange={handleChange}
             />
           </div>
+          <div className={styles.formGroup}>
+            <label >Observações</label>
+            <textarea
+              name="obs"
+              id="obs"
+              className={styles.input}
+              value={obs}
+              onChange={(e)=>setObs(e.target.value)}
+            />
 
+          </div>
           <button type="submit" className={styles.submitButton} disabled={loading}>
             {loading ? "Salvando..." : "Salvar Alterações"}
           </button>

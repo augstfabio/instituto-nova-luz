@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import styles from './Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
-import { CgProfile } from "react-icons/cg";
+import { CgHeart, CgProfile } from "react-icons/cg";
 import { RxDashboard } from "react-icons/rx";
-import { BiSolidEdit } from "react-icons/bi";
-import { IoExitOutline } from "react-icons/io5";
+import { BiBookHeart, BiHeart, BiHeartCircle, BiSolidEdit } from "react-icons/bi";
+import { IoExitOutline, IoHeartCircleSharp } from "react-icons/io5";
 import { useAuth } from '../hooks/useAuth';
 import { useMessage } from '../context/MessageContext';
 import Modal from './Modal';
 import { MdExitToApp } from "react-icons/md";
+
 
 export default function Navbar() {
     const navigate = useNavigate();
@@ -52,26 +53,51 @@ export default function Navbar() {
                     icon={<MdExitToApp />}
                 />
             )}
-            <div className={styles.logo}>
-                <h1 onClick={handleGoHome}>Instituto <br />Nova <span>Luz</span></h1>
-            </div>
-            <div className={styles.options}>
-                <div onClick={handleProfile} className={styles.profile}>
-                    <span><CgProfile /></span>
-                    {dropDownControl && (
-                        <ul className={styles.dropDown}>
-                            <div className={styles.profileInfo}>
-                                <span><CgProfile /></span>
-                                <div className={styles.profileData}>
-                                    <p>{user?.displayName || "Usuário"}</p>
-                                    <p><span>{user?.email || "Email não disponível"}</span></p>
+            <div className={styles.navContainer}>
+                <div className={styles.logo} onClick={handleGoHome}>
+                    <div className={styles.logoText}>
+                        <div className={styles.logoMain}>
+                            <span>Instituto</span><br />
+                            <span className={styles.highlight}>Nova Luz</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={styles.navItems}>
+                    <div className={styles.profileWrapper} onClick={handleProfile}>
+                        {!user? <span className={styles.fazerLogin}>Login</span> :<CgProfile className={styles.profileIcon} />}
+                        {dropDownControl && (
+                            <div className={styles.dropDown}>
+                                <div className={styles.userInfo}>
+                                    <CgProfile className={styles.userIcon} />
+                                    <div className={styles.userDetails}>
+                                        <h4>{user?.displayName || "Usuário"}</h4>
+                                        <p>{user?.email || "Email não disponível"}</p>
+                                    </div>
+                                </div>
+                                <div className={styles.menuItems}>
+                                    {user?.uid === import.meta.env.VITE_ADMIN_USER_ID &&
+                                        <div className={styles.menuItem} onClick={() => handleDirect('/dashboard')}>
+                                            <RxDashboard />
+                                            <span>Painel Admin</span>
+                                        </div>
+                                    }
+                                    <div className={styles.menuItem} onClick={() => handleDirect('/acompanhamento')}>
+                                        <BiBookHeart />
+                                        <span>Acompanhar progresso</span>
+                                    </div>
+                                    <div className={styles.menuItem} onClick={() => handleDirect('/perfil')}>
+                                        <BiSolidEdit />
+                                        <span>Editar Perfil</span>
+                                    </div>
+                                    <div className={`${styles.menuItem} ${styles.exitBtn}`} onClick={() => setModalOpen(true)}>
+                                        <IoExitOutline />
+                                        <span>Sair</span>
+                                    </div>
                                 </div>
                             </div>
-                            {user.uid === import.meta.env.VITE_ADMIN_USER_ID && <li onClick={() => handleDirect('/dashboard')}>Painel de controle <span><RxDashboard /></span></li>}
-                            <li onClick={() => handleDirect('/perfil')}>Perfil <span><BiSolidEdit /></span></li>
-                            <li className={styles.exitBtn} onClick={() => setModalOpen(true)}>Sair <span><IoExitOutline /></span></li>
-                        </ul>
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
         </header>

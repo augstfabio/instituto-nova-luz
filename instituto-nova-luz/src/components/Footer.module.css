@@ -1,72 +1,125 @@
-.footer{
-    margin-top: 5em;
-    padding: 2em ;
+/* Footer.module.css */
+.footer {
+    background: #f8f9fa;
+    padding: 2rem 1rem;
+    border-top: 1px solid #eee;
+}
+
+.container {
+    max-width:1200px;
+    margin: 0 auto;
+
+}
+
+.logoSection {
     display: flex;
     align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.logoIcon {
+    font-size: 1.8rem;
+    color: #f7b000;
+}
+
+.logoText h2 {
+    font-size: 1.3rem;
+    margin: 0;
+    line-height: 1.2;
+    color: #2d2d2d;
+}
+
+.logoText span {
+    color: #f7b000;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.icon {
+    font-size: 1.2rem;
+    color: #f7b000;
+    flex-shrink: 0;
+}
+
+.contactItem p {
+    margin: 0;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.whatsappItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+}
+
+.whatsappIcon {
+    font-size: 1.2rem;
+    color: #25D366;
+    margin-top: 0.2rem;
+}
+
+.whatsappLinks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.whatsappLinks a {
+    color: #25D366;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: opacity 0.2s;
+}
+
+.whatsappLinks a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.footerBottom {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-}
-.footerContainer{
-    display: flex;
-    width: 90%;
-    flex-direction: column;
-}
-.logo h1{
-   font-size: 15px;
-   font-weight: 800;
-   
-   cursor: pointer;
-}
-.logo span{
-    color: #f7b000;
-}
-.content{
-    margin-top: 1em;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-self: center;
-    border-top: 1px solid rgb(230, 230, 230);
-    padding-top: 2em;
-}
-.content h4{
-    font-size: 13px;
-}
-.content svg{
-    font-size:35px;
-    color: #f7b000;
-}
-.whatsappLinks ul{
-    list-style: none;
-}
-.whatsappLinks a{
-    color: #07bb07;
-    font-weight: 600;
-    font-size: 12px;
-}
-.content li, .content p{
-    margin: 15px 0;
-    font-size: 13px;
-}
-.additionalOptions ul{
-    list-style: none;
-}
-.additionalOptions a{
+    gap: 1rem;
+    padding-top: 1.5rem;
 
-    color: #050505ee;
+    font-size: 0.75rem;
 }
-.copyright{
-    align-self: center;
-    text-align: center;
-    font-size: 12px;
-    margin-top: 8em;
-}
-@media (max-width: 1000px) {
-   .content{
-    flex-direction: column;
-    gap: 20px;
 
-   }
-   .footer{
-    padding: 0;
-   }
+@media (max-width: 600px) {
+    .footer {
+       padding: 25px;
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+    
+    }
+
+    .logoSection {
+        justify-content: flex-start;
+    }
+
+    .footerBottom {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .whatsappItem{
+        display: flex;
+        align-items: center;
+    }
 }

@@ -1,114 +1,270 @@
-.dashboard {
-    margin-top: 2em;
-    padding: 0 40px;
-    min-height: 50vh;
+.container {
+    padding: 2rem;
+    min-height: 100vh;
+    background: #f8f9fa;
 }
 
-.searchContainer {
+.header {
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 1.4rem;
+    color: #2d2d2d;
+    margin-bottom: 1.5rem;
+}
+
+.searchForm {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.searchInput {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    padding: 0.5rem 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.searchInput:hover {
+    transform: translateY(-2px);
+}
+
+.searchIcon {
+    font-size: 1.2rem;
+    color: #666;
+    margin-right: 1rem;
+}
+
+.searchInput input {
+    flex: 1;
+    border: none;
+    padding: 0.8rem 0;
+    font-size: 1rem;
+    background: transparent;
+    outline: none;
+}
+
+.searchInput input::placeholder {
+    color: #999;
+}
+
+.searchButton {
+    background: #f7b000;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.searchButton:hover {
+    background: #e5a800;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.resultsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.resultsHeader h2 {
+    font-size: 1.25rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.newButton {
+    background: #f7b000;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.newButton:hover {
+    background: #e5a800;
+}
+
+.residentsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.residentCard {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.residentCard:hover {
+    transform: translateY(-3px);
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.cardHeader h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #2d2d2d;
+}
+
+.ativo,
+.inativo {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+}
+
+.ativo {
+    background: #4CAF50;
+}
+
+.inativo {
+    background: #e5a800;
+}
+
+.cardContent {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.cardContent strong {
+    color: #444;
+}
+
+.loadingContainer {
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    width: 100%;
+    padding: 2rem;
 }
 
-.form {
-    align-self: center;
-    width: 70%;
+.quickActions {
+    max-width: 1200px;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.actionCard {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: #f7b000;
-    padding: 5px 30px;
-    border-radius: 20px;
+    gap: 1rem;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
 }
 
-.form:hover {
-    background-color: #dd9f01;
+.actionCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.label input {
-    border: none;
-    outline: none;
-    color: #ffffffee;
-    background-color: transparent;
-}
-
-.label input::placeholder {
-    color: #ffffff;
-}
-
-.seachBtn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #ffffff;
+.actionIcon {
+    font-size: 1.5rem;
     color: #f7b000;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-}
-.result{
-    margin-top: 2em;
-
-}
-.searchContainer h2 {
-    align-self: flex-start;
-    font-size: 20px;
+    min-width: 40px;
 }
 
-.results {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 3em;
-
-}
-.dashboardSection h2{
-    font-size: 20px;
-}
-.dashboardSection {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    min-height: 200px;
-}
-.newResident {
-    padding: 10px 20px;
-    width: 100px;
-    text-align: center;
-    font-size: 12px;
-    cursor: pointer;
-    font-weight: 500;
-    color: #ffffff;
-    background-color: #f7b000
+.actionCard h3 {
+    margin: 0 0 0.5rem;
+    color: #2d2d2d;
+    font-size: 1.1rem;
 }
 
-.newResident:hover {
-    background-color: #e0a203
+.actionCard p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
 }
-.loading{
-    margin: 2em 0;
-}
-@media (max-width:800px) {
-.form {
-    align-self: center;
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f7b000;
-    padding: 5px 30px;
-    border-radius: 20px;
-    cursor: pointer;
-}
-}
-@media (max-width:620px) {
-    .dashboard {
-        margin-top: 2em;
-        padding: 0 20px;
-    
+
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .header h1 {
+        font-size: 1.2rem;
+    }
+
+    .residentsGrid {
+        grid-template-columns: 1fr;
     }
     
+    .resultsHeader {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .searchIcon {
+        display: none;
+    }
+    .quickActions {
+        grid-template-columns: 1fr;
+    }
+    .quickActions h3, .residentsGrid h3{
+        font-size: .9rem;
+    }
+    .quickActions p,  .residentsGrid p{
+        font-size: 13px;
+    }
+    .actionCard {
+        padding: 1rem;
+    }
+
+    .searchForm input{
+        width: 100%;
+        font-size: 14px;
+    }
+    
+
+}
+
+@media (max-width: 480px) {
+    .searchInput {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+        border-radius: 10px;
+    }
+
+    .searchButton {
+        align-self: flex-end;
+        justify-content: end;
+    }
 }
