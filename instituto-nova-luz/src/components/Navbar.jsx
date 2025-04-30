@@ -1,38 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
-import { CgHeart, CgProfile } from "react-icons/cg";
 import { RxDashboard } from "react-icons/rx";
-import { BiBookHeart, BiHeart, BiHeartCircle, BiSolidEdit } from "react-icons/bi";
-import { IoExitOutline, IoHeartCircleSharp } from "react-icons/io5";
+import { BiBookHeart, BiSolidEdit } from "react-icons/bi";
+import { IoExitOutline } from "react-icons/io5";
 import { useAuth } from '../hooks/useAuth';
 import { useMessage } from '../context/MessageContext';
 import Modal from './Modal';
-import { MdExitToApp } from "react-icons/md";
-
+import { MdExitToApp, MdMenu, MdClose } from "react-icons/md";
 
 export default function Navbar() {
     const navigate = useNavigate();
     const { user, logout } = useAuth();
     const { showMessage } = useMessage();
     const [modalOpen, setModalOpen] = useState(false);
-    const [dropDownControl, setDropDownControl] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const handleGoHome = () => {
         navigate('/');
-        setDropDownControl(false);
+        setMobileMenuOpen(false);
     };
-
+    useEffect(()=>{
+        if (modalOpen){
+            setMobileMenuOpen(false);
+        }
+    },[modalOpen])
     const handleDirect = (where) => {
         navigate(`${where}`);
-        setDropDownControl(!dropDownControl);
+        setMobileMenuOpen(false);
     };
 
     const handleProfile = () => {
-        if (user) {
-            setDropDownControl(!dropDownControl);
-        } else {
+        if (!user) {
             navigate('/login');
+            setMobileMenuOpen(false);
         }
     };
 
@@ -41,6 +42,8 @@ export default function Navbar() {
         setModalOpen(false);
         showMessage("Seção encerrada", "warning", 5000);
     };
+
+    const firstName = user?.displayName?.split(' ')[0] || "Login";
 
     return (
         <header className={styles.navbar}>
@@ -63,41 +66,97 @@ export default function Navbar() {
                     </div>
                 </div>
 
-                <div className={styles.navItems}>
-                    <div className={styles.profileWrapper} onClick={handleProfile}>
-                        {!user? <span className={styles.fazerLogin}>Login</span> :<CgProfile className={styles.profileIcon} />}
-                        {dropDownControl && (
-                            <div className={styles.dropDown}>
-                                <div className={styles.userInfo}>
-                                    <CgProfile className={styles.userIcon} />
-                                    <div className={styles.userDetails}>
-                                        <h4>{user?.displayName || "Usuário"}</h4>
-                                        <p>{user?.email || "Email não disponível"}</p>
-                                    </div>
-                                </div>
-                                <div className={styles.menuItems}>
-                                    {user?.uid === import.meta.env.VITE_ADMIN_USER_ID &&
-                                        <div className={styles.menuItem} onClick={() => handleDirect('/dashboard')}>
-                                            <RxDashboard />
-                                            <span>Painel Admin</span>
-                                        </div>
-                                    }
-                                    <div className={styles.menuItem} onClick={() => handleDirect('/acompanhamento')}>
-                                        <BiBookHeart />
-                                        <span>Acompanhar progresso</span>
-                                    </div>
-                                    <div className={styles.menuItem} onClick={() => handleDirect('/perfil')}>
-                                        <BiSolidEdit />
-                                        <span>Editar Perfil</span>
-                                    </div>
-                                    <div className={`${styles.menuItem} ${styles.exitBtn}`} onClick={() => setModalOpen(true)}>
-                                        <IoExitOutline />
-                                        <span>Sair</span>
-                                    </div>
-                                </div>
+         
+                <div className={styles.desktopMenu}>
+                  
+                    <button className={styles.menuItem} onClick={() => handleDirect('/acompanhamento')}>
+                        <BiBookHeart />
+                        <span>Acompanhar progresso</span>
+                    </button>
+
+                    {user ? (
+                        <>
+                            {user?.uid === import.meta.env.VITE_ADMIN_USER_ID && (
+                                <button className={styles.menuItem} onClick={() => handleDirect('/dashboard')}>
+                                    <RxDashboard />
+                                    <span>Painel Admin</span>
+                                </button>
+                            )}
+                            <button className={styles.menuItem} onClick={() => handleDirect('/perfil')}>
+                                <BiSolidEdit />
+                                <span>Editar Perfil</span>
+                            </button>
+                            <button className={`${styles.menuItem} ${styles.exitBtn}`} onClick={() => setModalOpen(true)}>
+                                <IoExitOutline />
+                                <span>Sair</span>
+                            </button>
+                            <div className={styles.userName} onClick={handleProfile}>
+                                {firstName}
                             </div>
-                        )}
-                    </div>
+                        </>
+                    ) : (
+                        <button className={styles.loginButton} onClick={handleProfile}>
+                            Login
+                        </button>
+                    )}
+                </div>
+
+                <div
+                    className={styles.mobileMenuButton}
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                >
+                    {mobileMenuOpen ? (
+                        <MdClose className={styles.menuIcon} />
+                    ) : (
+                        <MdMenu className={styles.menuIcon} />
+                    )}
+                </div>
+
+                <div
+                    className={`${styles.mobileOverlay} ${mobileMenuOpen ? styles.mobileOverlayOpen : ''}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                />
+                <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+                    {user ? (
+                        <>
+                            <div className={styles.mobileUserInfo}>
+                                <div className={styles.mobileUserName}>{user?.displayName || "Usuário"}</div>
+                                <div className={styles.mobileUserEmail}>{user?.email || "Email não disponível"}</div>
+                            </div>
+
+                           
+                            <button className={styles.mobileMenuItem} onClick={() => handleDirect('/acompanhamento')}>
+                                <BiBookHeart />
+                                <span>Acompanhar progresso</span>
+                            </button>
+
+                            {user?.uid === import.meta.env.VITE_ADMIN_USER_ID && (
+                                <button className={styles.mobileMenuItem} onClick={() => handleDirect('/dashboard')}>
+                                    <RxDashboard />
+                                    <span>Painel Admin</span>
+                                </button>
+                            )}
+                            <button className={styles.mobileMenuItem} onClick={() => handleDirect('/perfil')}>
+                                <BiSolidEdit />
+                                <span>Editar Perfil</span>
+                            </button>
+                            <button className={`${styles.mobileMenuItem} ${styles.mobileExitBtn}`} onClick={() => setModalOpen(true)}>
+                                <IoExitOutline />
+                                <span>Sair</span>
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                       
+                            <button className={styles.mobileMenuItem} onClick={() => handleDirect('/acompanhamento')}>
+                                <BiBookHeart />
+                                <span>Acompanhar progresso</span>
+                            </button>
+                            <button className={styles.mobileLoginButton} onClick={handleProfile}>
+                                Login
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
         </header>

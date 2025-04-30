@@ -36,9 +36,10 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />}></Route>
             <Route path='/recuperar-senha' element={<ForgotPassword />}></Route>
+            <Route path='/acompanhamento' element={<ProgressSearch />}></Route>
 
             <Route path='/perfil' element={<PrivateRoute><Profile /></PrivateRoute>}></Route>
-            <Route path='/acompanhamento' element={<PrivateRoute><ProgressSearch/></PrivateRoute>}></Route>
+            <Route path='/acompanhamento' element={<PrivateRoute><ProgressSearch /></PrivateRoute>}></Route>
 
             <Route path='/register' element={<PrivateLoginAndRegister><Register /></PrivateLoginAndRegister>}></Route>
             <Route path='/login' element={<PrivateLoginAndRegister><Login /></PrivateLoginAndRegister>}></Route>
