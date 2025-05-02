@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /login
+Disallow: /register
+Disallow: /dashboard
+
+
+Sitemap: https://institutonovaluz.org/sitemap.xml
